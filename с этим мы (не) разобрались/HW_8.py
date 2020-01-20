@@ -28,18 +28,19 @@ def path(n): #вместо n надо написать название текс
     return text
  
 def reg(n): #вместо n может быть слово, которое мы собираемся искать в тексте
-    reg ='^'+'('+n[0]+'|'+n[0].capitalize()+')'+n[1:]+'(а|у|ом|е|ы|ов|ам|ами|ах|)'  
+    reg = n+'(а|у|ом|е|ы|ов|ам|ами|ах|)'
     return reg
 
 def text_mosquito():
-    text = path('Mosquito.txt') 
-    main_list = text.split() 
-    for i, let in enumerate(main_list):
-        if re.search(reg('комар'), let): #вместо "комар" может быть написано "викинг" или "язык"
-            main_list[i] = re.sub('Комар', 'Слон', main_list[i])
-            main_list[i] = re.sub('комар', 'слон', main_list[i])
-    main_text = ' '.join(main_list)       
-    return main_text
+    text = path('Mosquito.txt')
+    #вместо "комар" может быть написано "викинг" или "язык"
+    regex_upper = reg('Комар')
+    print(regex_upper)
+    regex = reg('комар')
+    print(regex)
+    text = re.sub(regex_upper, 'Слон', text)
+    text = re.sub(regex, 'слон', text)    
+    return text
 
 def text_vikings():
     text = path('Vikings.txt') 
